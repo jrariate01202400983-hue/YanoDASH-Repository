@@ -33,6 +33,10 @@
             "Meet the Executives" => "/yanodash-repository/about/execs",
             "YanoDASH's Story" => "/yanodash-repository/about/yanodash-story"
         ]);
+        $myaccount_dropdownMenu = dropdownMenu("myaccount-dropdown-menu", [
+            "Login" => "/yanodash/login",
+            "Request an Account" => "/yanodash/request-account"
+        ]);
 
         $html = <<< HTML
             <!-- Temporary style, this can be moved to initial CSS file and replaced. -->
@@ -79,10 +83,16 @@
                 .dropdown:hover .dropdown-contents {
                     display: block;
                 }
+
+                #myaccount-dropdown-menu {
+                    position: absolute !important;
+                    right: 0 !important;
+                    transform: translateX(-75%);
+                }
             </style>
             <div id="navbar" style="display: flex; gap: 16px; align-items: center;">
                 <a href="/yanodash-repository/">
-                    <img src="/yanodash-repository/images/favicon.png" draggable="false" style="width: 100px;">
+                    <img src="/yanodash-repository/images/navbar-logo.png" draggable="false" style="width: 90px;">
                 </a>
                 <span id="vertical-bar" style="width: 2px; height: 80px; background-color: #71100F"></span>
                 <a href="/yanodash-repository"><h1 style="user-select: none;">YanoDASH</h1></a>
@@ -106,9 +116,13 @@
                     $about_dropdownMenu
                 </div>
 
-                <a style="margin-left: auto; margin-right: 20px; cursor: pointer;">
-                    <img src="/yanodash-repository/images/ui-indicators/account.png" draggable="false" style="width: 40px;">
-                </a>
+                <div class="dropdown" style="margin-left: auto; margin-right: 24px;">
+                    <a style="cursor: pointer;">
+                        <img src="/yanodash-repository/images/ui-indicators/account.png" draggable="false" style="width: 40px;">
+                    </a>
+                    $myaccount_dropdownMenu
+                </div>
+                
             </div>
         HTML;
         return $html;
