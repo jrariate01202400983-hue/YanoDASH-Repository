@@ -1,5 +1,5 @@
 <?php
-    require '../utils/TextUtils.php';
+    require_once '../utils/TextUtils.php';
     require_once 'password_input_event_handlers.php';
 
     # Define the minimum dimensions (width and height), in px unit, allowed for the password input
@@ -12,7 +12,7 @@
     function passwordInput(string $id, string $inputName, string $watermark = "Password", int $width = MIN_WIDTH, int $height = MIN_HEIGHT): string {
         # Sanitize and escape the string parameters to prevent reflected XSS attack
         $sanitizedID = htmlspecialchars(TextUtils::sanitizeIdentifier($id));
-        $sanitizedInputName = htmlspecialchars(TextUtils::sanitizeIdentifier($inputName));
+        $sanitizedInputName = $sanitizedID. "-inputfield";
         $sanitizedWatermark = htmlspecialchars($watermark);
 
         # Ensure that the final dimensions of the password input never goes beyond the min or max allowed width and height
@@ -20,14 +20,11 @@
         $finalHeight = max(MIN_HEIGHT, min($height, MAX_HEIGHT));
 
         # Create the event handler script for when the toggle password visibility button of this password field is clicked
-        $togglePasswordVisibilityScript = togglePasswordVisibilityFor($sanitizedID, $sanitizedInputName);
-
+        $v = $finalWidth - $finalHeight;
         $html = <<< HTML
-            <div id="$sanitizedID" class="password-input" style="width: {$finalWidth}px; height: {$finalHeight}px; display: grid; grid-template-columns: auto {$finalHeight}px;">
-                <input id="$sanitizedInputName" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1; width: 100%; height: 100%; box-sizing: border-box;">
-                <button type="button" style="grid-column: 2;">⊘</button>
-                <!-- The same event handler script we created earlier, self-contained in the password input's div -->
-                $togglePasswordVisibilityScript
+            <div id="$sanitizedID" class="password-input" style="width: {$finalWidth}px; height: {$finalHeight}px; border: 2px solid #ddd; display: grid; grid-template-columns: auto {$finalHeight}px; box-sizing: border-box;">
+                <input id="$sanitizedInputName" class="password-input-field" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1; border: none; width: 100%; height: 100%; box-sizing: border-box; padding: 0 4px;">
+                <button type="button" style="grid-column: 2; border: none;" onclick="togglePasswordVisibility(this)">⊘</button>
             </div>
         HTML;
         return $html;
