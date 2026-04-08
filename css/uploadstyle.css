@@ -1,0 +1,263 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   NAVBAR (NOT TOUCHED)
+   ========================= */
+
+/* NAVBAR RESPONSIVENESS */
+
+#navbar {
+    flex-wrap: wrap !important;
+    padding: 5px 1% !important;
+    gap: 5px !important;
+}
+
+/* Logo */
+#navbar img {
+    max-width: 40px;
+    height: auto;
+}
+
+#navbar .dropdown img {
+    margin-right: 0 !important;
+    width: 20px !important;
+    height: auto;
+    display: block;
+}
+
+/* Title */
+#navbar h1 {
+    font-size: 0.9rem;
+}
+
+/* Links */
+#navbar h3 {
+    font-size: 0.7rem;
+}
+
+#vertical-bar {
+    height: 24px !important;
+    width: 2px !important;
+}
+
+/* =========================
+   BASE (MOBILE FIRST)
+   ========================= */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+}
+
+/* TITLE */
+.title {
+    padding: 20px 7%;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* FORM WRAPPER */
+.form-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* FORM BOX */
+.create-container {
+    width: 95%;
+    background: white;
+    padding: 20px;
+    margin: 10px auto 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    line-height: 1.5;
+}
+
+/* FORM LAYOUT */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* SPACING BETWEEN ALL ELEMENTS */
+form > * {
+    margin-bottom: 15px;
+}
+
+/* LABELS */
+label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* INPUTS */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #7bb661;
+}
+
+/* TEXTAREA */
+textarea {
+    resize: vertical;
+    margin-top: 5px;
+}
+
+/* FORM GROUP (STACKED IN MOBILE) */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* BUTTON */
+button.approve {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: #7bb661;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button.approve:hover {
+    background-color: #6aa452;
+    transform: scale(1.03);
+}
+
+/* =========================
+   TABLET VIEW
+   ========================= */
+
+@media (min-width: 768px) {
+
+    #navbar {
+        padding: 12px 1% !important;
+        gap: 16px !important;
+    }
+
+    #navbar img {
+        max-width: 90px;
+        height: auto;
+    }
+
+    #navbar .dropdown img {
+        width: 70px !important;
+        height: auto;
+        display: block;
+    }
+
+    #navbar h1 {
+        font-size: 2rem;
+    }
+
+    #navbar h3 {
+        font-size: 1.8rem;
+    }
+
+    #vertical-bar {
+        height: 28px !important;
+        width: 2px !important;
+    }
+
+    .title {
+        font-size: 1.6rem;
+    }
+
+    .create-container {
+        width: 80%;
+        padding: 25px;
+    }
+
+    /* SIDE-BY-SIDE BUT WITH SPACING */
+    .form-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        width: 30%;
+        min-width: 120px;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 70%;
+    }
+}
+
+/* =========================
+   DESKTOP VIEW
+   ========================= */
+
+@media (min-width: 1024px) {
+
+    #navbar {
+        padding: 8px 1% !important;
+        gap: 16px !important;
+    }
+
+    #navbar img {
+        max-width: 90px;
+        height: auto;
+    }
+
+    #navbar .dropdown img {
+        width: 40px !important;
+        height: auto;
+        display: block;
+    }
+
+    #navbar h1 {
+        font-size: 2rem;
+    }
+
+    #navbar h3 {
+        font-size: 1.2rem;
+    }
+
+    #vertical-bar {
+        height: 36px !important;
+        width: auto;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        padding-left: 10%;
+    }
+
+    .create-container {
+        width: 60%;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 1rem;
+    }
+
+    button.approve {
+        font-size: 1rem;
+    }
+}

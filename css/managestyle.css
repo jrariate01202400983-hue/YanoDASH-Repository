@@ -1,0 +1,274 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* NAVBAR RESPONSIVENESS */
+
+#navbar {
+    flex-wrap: wrap !important;
+    padding: 5px 1% !important;
+    gap: 5px !important;
+}
+
+/* Logo */
+#navbar img {
+    max-width: 40px;
+    height: auto;
+}
+
+#navbar .dropdown img {
+    margin-right: 0 !important;
+    width: 20px !important;
+    height: auto;
+    display: block;
+}
+
+/* Title */
+#navbar h1 {
+    font-size: 0.9rem;
+}
+
+/* Links */
+#navbar h3 {
+    font-size: 0.7rem;
+}
+
+#vertical-bar {
+    height: 24px !important;
+    width: 2px !important;
+}
+
+/* =========================
+   BASE (MOBILE FIRST)
+   ========================= */
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+}
+
+/* PAGE TITLE */
+.title {
+    padding: 20px 7%;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* CONTROLS */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 7% 20px;
+}
+
+/* INPUT + SELECT */
+.controls input,
+.controls select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.controls input:focus,
+.controls select:focus {
+    border-color: #7bb661;
+}
+
+/* TABLE CONTAINER */
+.table-container {
+    width: 95%;
+    margin: 0 auto 30px;
+    overflow-x: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* TABLE */
+.table-container table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+/* HEADER */
+th {
+    background-color: #e6f0fa;
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* CELLS */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* BUTTONS */
+td button {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s ease;
+}
+
+/* EDIT BUTTON */
+button.edit {
+    background-color: #7bb661;
+    color: white;
+}
+
+button.edit:hover {
+    background-color: #6aa452;
+    transform: scale(1.05);
+}
+
+/* DELETE BUTTON */
+button.delete {
+    background-color: white;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+}
+
+button.delete:hover {
+    background-color: #c0392b;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* =========================
+   TABLET VIEW
+   ========================= */
+
+@media (min-width: 768px) {
+	#navbar {
+        padding: 12px 1% !important;
+        gap: 16px !important;
+    }
+
+    #navbar img {
+        max-width: 90px;
+        height: auto;
+    }
+
+    #navbar .dropdown img {
+        width: 70px !important;
+        height: auto;
+        display: block;
+    }
+
+    #navbar h1 {
+        font-size: 2rem;
+    }
+
+    #navbar h3 {
+        font-size: 1.8rem;
+    }
+
+    #vertical-bar {
+        height: 28px !important;
+        width: 2px !important;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .controls {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .controls input {
+        width: 60%;
+    }
+
+    .controls select {
+        width: 35%;
+    }
+
+    td, th {
+        font-size: 0.95rem;
+    }
+}
+
+/* =========================
+   DESKTOP VIEW
+   ========================= */
+
+@media (min-width: 1024px) {
+
+    #navbar {
+        padding: 8px 1% !important;
+        gap: 16px !important;
+    }
+
+    #navbar img {
+        max-width: 90px;
+        height: auto;
+    }
+
+    #navbar .dropdown img {
+        width: 40px !important;
+        height: auto;
+        display: block;
+    }
+
+    #navbar h1 {
+        font-size: 2rem;
+    }
+
+    #navbar h3 {
+        font-size: 1.2rem;
+    }
+
+    #vertical-bar {
+        height: 36px !important;
+        width: auto;
+    }
+
+    /* CONTENT */
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .controls input {
+        width: 300px;
+    }
+
+    .controls select {
+        width: 200px;
+    }
+
+    /* TABLE */
+    td, th {
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+
+    tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* BUTTONS STACK ON DESKTOP (CLEANER) */
+    td button {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+}
