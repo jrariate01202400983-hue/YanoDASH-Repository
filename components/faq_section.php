@@ -23,7 +23,7 @@
         $finalEntryList = implode("\n", $entryList);
 
         $html = <<< HTML
-            <div id="$sanitizedID">
+            <div id="$sanitizedID" style="padding: 32px;">
                 <h1>$sanitizedLabel</h1>
                 $finalEntryList
             </div>
