@@ -8,7 +8,33 @@
 <html>
     <head>
         <script src="../script/control-actions.js" defer></script>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../css/fonts.css">
+        <link rel="stylesheet" href="../css/components/user-form.css">
+        
         <style>
+            * {
+                font-family: 'RobotoFlex', sans-serif
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                font-weight: normal;
+            }
+
+            p, button, input, .dropdown-contents {
+                font-size: 14px;
+            }
+
+            #navbar h3 {
+                font-weight: bold;
+                font-size: 17px;
+            }
+
+            #yanodash-home h1, #yanodash-home span {
+                font-family: 'Gupter', serif;
+                font-size: 38px;
+            }
+
             #uname {
                 box-sizing: border-box;
                 display: block;
@@ -32,22 +58,29 @@
             #login-enter-password {
                 margin: auto;
             }
+
+            #background {
+                background: url(../images/backgrounds/login.jpg) center/cover no-repeat;
+                height: 640px;
+            }
         </style>
         <?php initializePage("Login | YanoDASH")?>
     </head>
     <body>
         <?php echo navbar(0)?>
-        <div id="login-form" style="box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
-            <h1 style="text-align: center;">Login</h1>
-            <input type="text" id="uname" name="username" placeholder="Username or Email Address">
-            <?php echo passwordInput("login-enter-password", "login-password-input", height: 44, width: 240)?>
-            <br>
-            <button style="display: block; margin: auto; height: 32px; width: 64px; border-radius: 16px; border: none; background-color: #792A25; color: white; cursor: pointer">Login</button>
-            <a style="text-align: center; cursor: pointer"><p style="margin: 0;">I forgot my password</p></a>
-            <p style="text-align: center; margin-bottom: 0;">Don't have an account?</p>
-            <a href="/yanodash-repository/request-account">
-                <button style="display: block; margin: auto; width: 150px; height: 32px; color: black; background-color: white;">Request an account</button>
-            </a>
+        <div id="background">
+            <div class="form-container" style="width: 320px; z-index: 10;">
+                <h1 style="text-align: center;">Login</h1>
+                <input type="text" id="uname" name="username" placeholder="Username or Email Address">
+                <?php echo passwordInput("login-enter-password", "login-password-input", height: 44, width: 240)?>
+                <br>
+                <button style="display: block; margin: auto; height: 32px; width: 64px; border-radius: 16px; border: none; background-color: #792A25; color: white; cursor: pointer">Login</button>
+                <a style="text-align: center; cursor: pointer"><p style="margin: 0;">I forgot my password</p></a>
+                <p style="text-align: center; margin-bottom: 0;">Don't have an account?</p>
+                <a href="/yanodash-repository/request-account">
+                    <button style="display: block; margin: auto; width: 150px; height: 32px; color: black; background-color: white;">Request an account</button>
+                </a>
+                </div>
         </div>
     </body>
 </html>
