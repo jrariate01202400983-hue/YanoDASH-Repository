@@ -58,52 +58,8 @@
             echo footer();
         ?>
 
-        <script>
-        document.addEventListener("DOMContentLoaded", () => {
-
-            const hamburger = document.querySelector(".hamburger");
-            const navLinks = document.querySelector("#nav-links");
-
-            if (hamburger && navLinks) {
-
-                // TOGGLE NAV
-                hamburger.addEventListener("click", () => {
-                    navLinks.classList.toggle("active");
-                });
-
-                // CLOSE MENU (ONLY NON-DROPDOWN LINKS)
-                document.querySelectorAll("#nav-links a").forEach(link => {
-                    link.addEventListener("click", (e) => {
-                        if (link.closest(".dropdown")) return;
-                        navLinks.classList.remove("active");
-                    });
-                });
-
-                // DROPDOWN CLICK (FIXED)
-                document.querySelectorAll("#nav-links .dropdown").forEach(dropdown => {
-
-                    dropdown.addEventListener("click", function(e) {
-
-                        // ignore clicks inside dropdown menu
-                        if (e.target.closest(".dropdown-contents")) return;
-
-                        e.preventDefault();
-
-                        // 🔥 FORCE REPAINT FIX
-                        this.classList.toggle("open");
-
-                        // close others
-                        document.querySelectorAll("#nav-links .dropdown").forEach(d => {
-                            if (d !== this) d.classList.remove("open");
-                        });
-
-                    });
-
-                });
-
-            }
-
-        });
+        <script src="script/navbar-hamburger.js">
+        
         </script>
         
     </body>
