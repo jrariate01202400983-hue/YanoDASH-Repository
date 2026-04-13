@@ -54,45 +54,44 @@
                 <a href="/yanodash-repository/">
                     <img src="/yanodash-repository/images/navbar-logo.png" draggable="false" style="width: 90px;">
                 </a>
-                <a href="/yanodash-repository" id="yanodash-home"><h1>Yano<span class="ulp" href="#">DASH</h1></span></a>
-                <span id="vertical-bar" style="width: 2px; height: 32px; background-color: #71100F; margin-left: 8px; margin-right: 8px;"></span>
-                <div class="dropdown" id="documents-dropdown">
-                    <a class="$documents_classList" href="/yanodash-repository/documents/">
-                        <h3>Documents</h3>
-                    </a>
-                    $documents_dropdownMenu
-                </div>
-                <div class="dropdown" id="stats-dropdown">
-                    <a class="$statistics_classList" href="#">
-                        <h3>Statistics</h3>
-                    </a>
-                    $statistics_dropdownMenu
-                </div>
-                <div class="dropdown" id="request-dropdown">
-                    <a class="$request_classList" href="/yanodash-repository/request/request.php">
-                        <h3>Request</h3>
-                    </a>
-                    $request_dropdownMenu
-                </div>
-                <div class="dropdown">
-                    <a class="$contact_classList" href="#">
-                        <h3>Contact</h3>
-                    </a>
-                </div>
-                <div class="dropdown" id="about-dropdown">
-                    <a class="$about_classList" href="#">
-                        <h3>About</h3>
-                    </a>
-                    $about_dropdownMenu
+                <a href="/yanodash-repository"><h1 style="user-select: none;">YanoDASH</h1></a>
+                <span id="vertical-bar" style="width: 2px; height: 32px; background-color: #71100F"></span>
+
+                <button class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div id="nav-links">
+                    <div class="dropdown" id="documents-dropdown">
+                        <a class="$documents_classList" href="/yanodash-repository/documents/">
+                            <h3>Documents</h3>
+                        </a>
+                        $documents_dropdownMenu
+                    </div>
+                    <div class="dropdown" id="stats-dropdown">
+                        <a class="$statistics_classList" href="/yanodash-repository/stats/">
+                            <h3>Statistics</h3>
+                        </a>
+                        $statistics_dropdownMenu
+                    </div>
+                    <h3><a class="$contact_classList" href="/yanodash-repository/contact/">Contact</a></h3>
+                    <div class="dropdown" id="about-dropdown">
+                        <a class="$about_classList" href="/yanodash-repository/about/">
+                            <h3>About</h3>
+                        </a>
+                        $about_dropdownMenu
+                    </div>
+
+                    <div class="dropdown" style="margin-left: auto; margin-right: 24px;">
+                        <a style="cursor: pointer;">
+                            <img src="/yanodash-repository/images/ui-indicators/account.png" draggable="false" style="width: 40px;">
+                        </a>
+                        $myaccount_dropdownMenu
+                    </div>
                 </div>
 
-                <div class="dropdown" style="margin-left: auto; margin-right: 24px;">
-                    <a style="cursor: pointer;">
-                        <img src="/yanodash-repository/images/ui-indicators/account.png" draggable="false" style="width: 40px;">
-                    </a>
-                    $myaccount_dropdownMenu
-                </div>
-                
             </div>
         HTML;
         return $html;
