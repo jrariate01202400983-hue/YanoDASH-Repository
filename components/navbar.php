@@ -2,6 +2,11 @@
     # We include the dropdown menu component because our links need dropdown menus (they have sublinks)
     require_once 'dropdown_menu.php';
 
+    # We import the default styles needed for this component so that it gets imported automatically whenever we include this component in another page
+    echo <<< HTML
+        <link rel="stylesheet" href="/yanodash-repository/css/components/navbar.css"> <!-- abc -->
+    HTML;
+
     # The default value of $activeIndex is 0, it means the homepage is active or another unknown page is active.
     # Other values:
     #   - $activeIndex is 1 = Documents is active
@@ -45,126 +50,6 @@
         ]);
 
         $html = <<< HTML
-            <!-- Temporary style, this can be moved to initial CSS file and replaced. -->
-            <style>
-                #navbar {
-                    padding: 8px;
-                }
-
-                #navbar a, #navbar a:visited {
-                    color: black;
-                    text-decoration: none;
-                }
-
-                .active-link:link, .active-link:visited {
-                    color: red;
-                    font-style: italic;
-                }
-
-                .dropdown {
-                    position: relative;
-                    border-radius: 32px;
-                    transition: background-color 0.3s ease;
-                    padding: 8px 12px;
-                    cursor: pointer;
-                }
-
-                .dropdown:hover {
-                    background: rgba(255, 52, 52, 0.15);
-                }
-
-                .dropdown h3 {
-                    margin: 0;
-                }
-
-                .dropdown-contents {
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-
-                    background: #f0f0f0;
-                    min-width: 164px;
-                    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-                    border-radius: 8px;
-                    padding: 8px 0;
-                    z-index: 1000;
-
-                    clip-path: inset(0 0 100% 0);
-                    opacity: 0;
-
-                    transition: 
-                        clip-path 0.35s ease,
-                        opacity 0.25s ease;
-
-                    pointer-events: none;
-                }
-
-                .dropdown-contents a {
-                    display: block;
-                    padding: 8px 12px;
-                    text-decoration: none;
-                    color: black;
-                }
-
-                .dropdown-contents a:hover {
-                    background: rgba(255, 52, 52, 0.15);
-                }
-
-                .dropdown:hover .dropdown-contents {
-                    clip-path: inset(0 0 0 0);
-                    opacity: 1;
-                    pointer-events: auto;
-                }
-
-                #myaccount-dropdown-menu {
-                    position: absolute !important;
-                    right: 0 !important;
-                    transform: translateX(-75%);
-                }
-
-                #yanodash-home
-                {
-                    cursor: pointer;
-                }
-
-                #yanodash-home
-                {
-                    color: #71100F;
-                    transition: color 0.4s ease;
-                    margin-left: 8px;
-                    margin-right: 8px;
-                }
-
-                #yanodash-home:hover
-                {
-                    text-decoration: none;
-                    color: red;
-                    transition: color 0.3s ease;
-                }
-
-                #yanodash-home:hover .ulp
-                {
-                }
-
-                #yanodash-home:hover .ulp::after
-                {
-                    width: 100%;
-                }
-
-                .ulp { position: relative; }
-
-                .ulp::after
-                {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    bottom: -2px;
-                    width: 0;
-                    height: 3px;
-                    background: red;
-                    transition: width 0.3s ease;
-                }
-            </style>
             <div id="navbar" style="display: flex; align-items: center;">
                 <a href="/yanodash-repository/">
                     <img src="/yanodash-repository/images/navbar-logo.png" draggable="false" style="width: 90px;">
