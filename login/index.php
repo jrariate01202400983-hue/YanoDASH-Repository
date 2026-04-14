@@ -1,14 +1,15 @@
-<?php
-    require_once '../components/navbar.php';
+<?php 
     require_once '../components/head.php';
-    require_once '../components/footer.php';
+    require_once '../components/navbar.php';
     require_once '../components/password_input.php';
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
+        
         <script src="../script/control-actions.js" defer></script>
-        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../css/base-layout.css">
         <link rel="stylesheet" href="../css/fonts.css">
         <link rel="stylesheet" href="../css/components/user-form.css">
         
@@ -74,7 +75,8 @@
                 <input type="text" id="uname" name="username" placeholder="Username or Email Address">
                 <?php echo passwordInput("login-enter-password", "login-password-input", height: 44, width: 240)?>
                 <br>
-                <button style="display: block; margin: auto; height: 32px; width: 64px; border-radius: 16px; border: none; background-color: #792A25; color: white; cursor: pointer">Login</button>
+                <a class="btn-back" style="display: block; margin: auto; width: 64px; cursor: pointer; text-align: center;">Login</a>
+                <!-- <button style="display: block; margin: auto; height: 32px; width: 64px; border-radius: 16px; border: none; background-color: #792A25; color: white; cursor: pointer">Login</button> -->
                 <a style="text-align: center; cursor: pointer"><p style="margin: 0;">I forgot my password</p></a>
                 <p style="text-align: center; margin-bottom: 0;">Don't have an account?</p>
                 <a href="/yanodash-repository/request-account">
