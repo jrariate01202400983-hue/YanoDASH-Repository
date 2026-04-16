@@ -8,11 +8,12 @@
 <html>
     <head>
         <?php initializePage("Documents | YanoDASH")?>
-        <link rel="stylesheet" href="index_docs.css"/>
+        <link rel="stylesheet" href="../css/index_docs.css"/>
     </head>
     <body>
         <?php echo navbar(1)?>
-        <div>
+        <div class="container">
+            
             <h1 class="title"> What documents do you want to check? </h1>
             <div class="button-container">
                 <a href="latest_rel.php" class="button"> Latest Releases </a>
