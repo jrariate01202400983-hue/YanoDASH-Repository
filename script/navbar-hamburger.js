@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector("#nav-links");
     const dropdowns = document.querySelectorAll("#nav-links .dropdown");
@@ -6,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hamburger && navLinks) {
         // TOGGLE NAV
         hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
             navLinks.classList.toggle("active");
             dropdowns.forEach(d => d.classList.remove("open"));
         });
@@ -13,10 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // DROPDOWN CLICK
         dropdowns.forEach(dropdown => {
             dropdown.addEventListener("mouseenter", () => {
+                if (!mediaQuery.matches) return;
                 dropdown.classList.add("open");
             });
 
             dropdown.addEventListener("mouseleave", () => {
+                if (!mediaQuery.matches) return;
                 dropdown.classList.remove("open");
             });
 
