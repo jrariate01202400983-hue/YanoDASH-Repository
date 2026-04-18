@@ -1,6 +1,8 @@
 <!-- Home Page -->
 <!-- Assigned Member: Dwight -->
 <?php
+    session_start();
+
     require_once 'components/head.php';
     require_once 'components/navbar.php';
     require_once 'components/main_section.php';
@@ -26,7 +28,11 @@
                 organization member, or just a curious Ka-Yano, 
                 valuable information awaits!",
                 "images/backgrounds/headerimg.jpeg",
-                "rgba(236, 53, 47, 0.7)"
+                "rgba(236, 53, 47, 0.7)",
+                linksList: [
+                    ['Browse Public Archive ↗', '/yanodash-repository/documents/br_arch.php', 'bpa'],
+                    ['Latest Releases ↗', '/yanodash-repository/documents/latest_rel.php', 'lr']
+                ]
             );
 
             echo mainSection(
@@ -39,7 +45,10 @@
                 transparency.",
                 "images/backgrounds/stats-section-bg.jpg",
                 "rgba(0, 96, 50, 0.8)",
-                2
+                2,
+                linksList: [
+                    ['View Statistics ↗', '#', 'vs']
+                ]
             );
 
             echo mainSection(
@@ -52,7 +61,10 @@
                 cutting-edge Argon2id algorithm, the winner of the 2015 
                 Password Hashing Competition.",
                 "images/backgrounds/dms-section-bg.webp",
-                "rgba(147, 169, 241, 0.6)"
+                "rgba(147, 169, 241, 0.6)",
+                linksList: [
+                    ['Open YanoDASH DMS ↗', '/yanodash-repository/dms/project.php', 'oyddms']
+                ]
             );
 
             echo footer();

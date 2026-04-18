@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once '../components/head.php';
     require_once '../components/navbar.php';
 ?>
@@ -6,53 +7,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-    <link rel="stylesheet" text="text/css" href="../style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Track Request | YanoDASH</title>
-
-    <style>
-        * {
-            box-sizing: border-box; /* Ensures padding doesn't break widths */
-        }
-
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .form-container {   
-            width: 90%;
-            max-width: 450px;
-            margin: 20px auto;
-            padding: 25px;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-            border-top: 5px solid #2e7d32;
-        }
-=======
     <?php initializePage("Track Request | YanoDASH")?>
-    <!-- <meta charset="UTF-8">
-    <title>Track Request | YanoDASH</title> -->
 
     <style>
-        /* body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #ffffff;
-        } */
-
-        .form-container { width: 750px; 
-                          margin: 50px auto; 
-                          background: #ffffff; 
-                          padding: 40px; 
-                          border-radius: 15px; 
-                          box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-                          border-top: 8px solid #2e7d32; 
-                        }
->>>>>>> 22dbbd76b30e94d9f5f2102cff14ea8052fafa20
+        .form-container { 
+            width: 750px; 
+            margin: 50px auto; 
+            background: #ffffff; 
+            padding: 40px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            border-top: 8px solid #2e7d32; 
+        }
 
         .btn-back { 
             display: inline-block; 
@@ -98,7 +64,7 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-family: Arial, sans-serif;
-            font-size: 16px; /* Prevents auto-zoom on iOS */
+            font-size: 16px; 
         }
 
         .btn-track {
@@ -118,7 +84,6 @@
             background-color: #1b5e20;
         }
 
-        /* Timeline Styles */
         .status-timeline {
             margin-top: 25px;
             border-top: 1px solid #eee;
@@ -149,7 +114,7 @@
             background: #e0e0e0;
             border-radius: 50%;
             display: flex;
-            flex-shrink: 0; /* Prevents circle from squishing on mobile */
+            flex-shrink: 0;
             align-items: center;
             justify-content: center;
             color: white;

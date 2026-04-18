@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     require_once '../components/head.php';
     require_once '../components/navbar.php';
     require_once '../components/accordion.php';
@@ -21,7 +23,7 @@
             <br><i>Not a student of the University of Southeastern Philippines?<br> You can always continue <a href="/yanodash-repository/">browsing as a guest.</i></a> 
             <br><br>Already have an account?
         </p>
-        <a href="/yanodash-repository/login">
+        <a href="/yanodash-repository/auth/login.php">
             <button style="display: block; margin: auto; height: 32px;">Continue to Login Page →</button>
         </a>
         <div style="width: 75%; margin: auto;">
@@ -38,7 +40,7 @@
 
                         "Can I request an account using a non-USeP email address?"
                         => "No, not currently. For verification and safety purposes, we only support USeP university email addresses."
-                    ], true
+                    ]
                 );
             ?>
         </div>

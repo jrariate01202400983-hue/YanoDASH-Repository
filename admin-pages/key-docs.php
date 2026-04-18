@@ -2,6 +2,8 @@
 <!-- Assigned Member: Shannon -->
 
 <?php
+    session_start();
+    
     require_once '../components/head.php';
     require_once '../components/navbar.php';
 ?>
@@ -9,9 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title> Important Documents </title>
+    <?php initializePage('Important Documents | YanoDASH')?>	
 	<link rel="stylesheet" type="text/css" href="../css/rqstyle.css">
 </head>
 <body class="important-page">

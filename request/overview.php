@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
   require_once '../components/head.php';
   require_once '../components/navbar.php';
 ?>
@@ -6,31 +8,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-  <link rel="stylesheet" text="text/css" href="../style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Request Overview</title>
-
-<style>
-  body {
-    margin: 0;
- font-family: Arial, sans-serif;
-    background: #fffdfd;
-  }
-=======
   <?php initializePage("Request Overview | YanoDASH")?>
 
 <style>
-  /* body {
-    font: normal 1em 'Times New Roman', Times, serif, sans-serif;
-    background: #fff;
-     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  } */
->>>>>>> 22dbbd76b30e94d9f5f2102cff14ea8052fafa20
-
   .header-container {
     position: relative;
     display: flex;

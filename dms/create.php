@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require_once '../components/head.php';
     require_once '../components/navbar.php';
 ?>
@@ -13,17 +15,29 @@
     <?php echo navbar()?>
 
     <div class="container">
-        <h2>Document Portal</h2>
-        <p class="subtitle">Select a file from your device to upload.</p>
+        <h2 style="font-family: 'Gupter'; font-weight: nomral">New Document</h2>
 
         <div class="section">
+            <p style="color: white; font-family: 'RobotoFlex'">Document Name </p>
+            <input type="text" name="docname" placeholder="Document Name" required><br><br>
+            <p style="color: white;">Categories </p>
+            <select name="categories" id="categories">
+            <option value="Financial">Financial</option>
+            <option value="Activity Design">Activity Design</option>
+            <option value="Minutes">Minutes</option>
+            <option value="Other">Other</option>
+            </select>
+            <br><br>
+
+            <p style="color: white;">Initial File </p>
             <label for="fileUpload" class="custom-file-upload">
                 Choose Document
             </label>
+            <p class="subtitle">Select a file from your device to upload. <br>Max: 20 MB</p>
             <input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.txt">
             
             <div id="fileInfo" class="file-info">No file chosen</div>
-            
+
             <button class="upload-btn" onclick="startUpload()">Upload Document</button>
             <div id="statusMessage" class="status"></div>
         </div>

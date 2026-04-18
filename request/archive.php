@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require_once '../components/head.php';
     require_once '../components/navbar.php';
 ?>
@@ -7,23 +9,10 @@
 <html lang="en">
 <head>
     <?php initializePage("Request Document | YanoDASH")?>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Document | YanoDASH</title> -->
 
     <style>
-        /* body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #ffffff;
-        } */
-
         .form-container {
-<<<<<<< HEAD
-            max-width: 500px;
-            width: 92%;
-=======
             max-width: 750px;
->>>>>>> 22dbbd76b30e94d9f5f2102cff14ea8052fafa20
             margin: 50px auto;
             background: #ffffff;
             padding: 20px;
@@ -32,7 +21,6 @@
             border-top: 8px solid #2e7d32; 
         }
 
-        /* UI Styled Back Button */
         .btn-back {
             display: inline-block;
             padding: 10px 25px;

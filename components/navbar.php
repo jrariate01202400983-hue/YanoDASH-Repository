@@ -1,112 +1,127 @@
 <?php
-    session_start();
-    $_SESSION['role'] = "editor";
-    $_SESSION['userID'] = "12345678";
-
-    $shouldShowSpace = 
-        $_SESSION['role'] === "admin" || $_SESSION['role'] === "editor";
-
-    $space_text = match ($_SESSION['role']) {
-        default => '#',
-        'admin' => 'Admin Space',
-        'editor' => 'Editor Space'
-    };
-    $space_link = match ($_SESSION['role']) {
-        default => '#',
-        'admin' => '/yanodash-repository/admin-space?user='. $_SESSION['userID'],
-        'editor' => '/yanodash-repository/editor-space?user='. $_SESSION['userID']
-    };
+    $isLoggedIn = isset($_SESSION['username']);
+    $shouldShowPrivate = 
+        $isLoggedIn && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "editor");
 
     require_once 'menu.php';
-
     echo <<< HTML
         <link rel="stylesheet" href="/yanodash-repository/css/components/navbar.css">
         <script src="/yanodash-repository/script/navbar-hamburger.js"></script>
     HTML;
 
     function navbar(int $activeIndex = 0): string {
-        global $shouldShowSpace;
-        global $space_text;
-        global $space_link;
+        global $isLoggedIn;
+        global $shouldShowPrivate;
 
-        $documents_classList = $activeIndex == 1? "navbar-link active-link" : "navbar-link";
-        $statistics_classList = $activeIndex == 2? "navbar-link active-link" : "navbar-link";
-        $request_classList = $activeIndex == 3? "navbar-link active-link" : "navbar-link";
-        $contact_classList = $activeIndex == 5? "navbar-link active-link" : "navbar-link";
-        $about_classList = $activeIndex == 6? "navbar-link active-link" : "navbar-link";
+        $documents_activeness = $activeIndex === 1? "active" : "";
+        $request_activeness = $activeIndex === 2? "active" : "";
+        $privateArchive_activeness = $shouldShowPrivate && $activeIndex === 3? "active" : "";
+        $dms_activeness = $shouldShowPrivate && $activeIndex === 4? "active" : "";
+        $contact_activeness = $activeIndex === 5? "active": "";
+        $about_activeness = $activeIndex === 6? "active": "";
 
-        $test_dropdownMenu = menu("test-dropdown-menu", [
-            "A" => "#",
-            "B" => "#",
-            "C" => "#"
-        ]);
-        $documents_dropdownMenu = menu("document-dropdown-menu", [
+        $documents_menu = menu("document-menu", [
             "Document Directory" => "/yanodash-repository/documents/",
             "Latest Releases" => "/yanodash-repository/documents/latest_rel.php",
-            "Browse Archive" => "/yanodash-repository/documents/br_arch.php"
-        ]);
-        $statistics_dropdownMenu = menu("statistics-dropdown-menu", [
-            "General" => "#",
-            "For Editors" => "#",
-            "For Admins" => "#"
-        ]);
-        $request_dropdownMenu = menu("request-dropdown-menu", [
-            "Request Menu" => "/yanodash-repository/request/request.php",
-            "Request to Archive" => "/yanodash-repository/request/archive.php",
-            "Track your Request" => "/yanodash-repository/request/track.php",
-            "Requests Overview" => "/yanodash-repository/request/overview.php"
+            "Browse Public Archive" => "/yanodash-repository/documents/br_arch.php"
         ]);
 
-        $space_menu = !$shouldShowSpace
-            ? "" # Don't generate space-related menu if user doesn't have permissions (deny-by-default)
-            : ( # Otherwise, determine whether user is admin or editor and display the right space-related menu accordingly
-                $_SESSION['role'] === 'admin'
-                    ? menu("space-dropdown-menu", [
-                        "Pending Archive Requests" => "#",
-                        "&emsp;General Documents" => "#",
-                        "&emsp;Important Documents" => "#",
-                        "Create Document" => "#",
-                        "Manage Documents" => "#",
-                        "Security" => "#",
-                        "&emsp;Manage Document View Passwords" => "#",
-                        "&emsp;Manage Access Control" => "#"
-                    ])
-                    : menu("space-dropdown-menu", [
-                        "Create Document" => "/yanodash-repository/dms/project.php",
-                        "Manage Documents" => "#",
-                        "Security" => "#",
-                        "&emsp;Manage Document View Passwords" => "#"
-                    ])
-            );
+        $request_menu = !$shouldShowPrivate
+            ? ""
+            : menu("request-menu", [
+                "Request Menu" => "/yanodash-repository/request/request.php",
+                "Request Document Archiving" => "/yanodash-repository/request/archive.php",
+                "Requests Overview" => "/yanodash-repository/request/overview.php"
+            ]);
 
-        $space_content = !$shouldShowSpace
+        $privateArchive_menu = !$shouldShowPrivate
+            ? ""
+            : ($_SESSION['role'] === 'admin'
+                ? menu("private-archive-menu", [
+                    "Home" => "#",
+                    "Pending Archive Requests" => "/yanodash-repository/admin-pages/archive-rq.php",
+                    "Important Documents" => "/yanodash-repository/admin-pages/key-docs.php"
+                ])
+                : menu("private-archive-menu", [
+                    "Home" => "#"                
+                ]));
+
+        $dms_menu = !$shouldShowPrivate
+            ? ""
+            : menu("dms-menu", [
+                "Home" => "#",
+                "Add New Document" => "/yanodash-repository/dms/create.php",
+                "Manage Documents" => "/yanodash-repository/dms/manage.php"
+            ]);
+
+        $about_menu = menu("about-menu", [
+            "What is the OSC?" => "#",
+            "Meet the Executives" => "#",
+        ]);
+
+        $account_menu = menu("account-menu", [
+            "Login" => "/yanodash-repository/auth/login.php",
+            "Request an Account" => "/yanodash-repository/request-account"
+        ], isDark: true);
+        if ($isLoggedIn) {
+            $username = $_SESSION['username'];
+            $account_menu = $_SESSION['role'] !== "admin"
+                ? menu("account-menu", [
+                    "Logged in as: <b><i>$username</i></b>" => "#",
+                    "My Account" => "#",
+                    "Logout" => "/yanodash-repository/auth/logout.php"
+                ], isDark: true)
+                : menu("account-menu", [
+                    "Logged in as: <b><i>$username</i></b>" => "#",
+                    "My Account" => "#",
+                    "Register/Approve an Account" => "#",
+                    "Logout" => "/yanodash-repository/auth/logout.php"
+                ], isDark: true);
+            }
+        
+        $request_content = !$shouldShowPrivate
             ? ""
             : <<< HTML
-                <div class="nav-item dropdown" id="space-dropdown">
-                    <a class="nav-item-link" href="$space_link">
-                        <h3>$space_text</h3>
+                <div class="nav-item dropdown $request_activeness">
+                    <a class="nav-item-link">
+                        <h3>Request</h3>
                     </a>
-                    $space_menu
+                    $request_menu
                 </div>
             HTML;
 
-        $about_dropdownMenu = menu("about-dropdown-menu", [
-            "What is the OSC?" => "#",
-            "Meet the Executives" => "#",
-            "YanoDASH's Story" => "#"
-        ]);
-        $myaccount_dropdownMenu = menu("myaccount-dropdown-menu", [
-            "Login" => "/yanodash-repository/login",
-            "Request an Account" => "/yanodash-repository/request-account"
-        ]);
+        $privateArchive_content = !$shouldShowPrivate
+            ? ""
+            : <<< HTML
+                <div class="nav-item dropdown $privateArchive_activeness">
+                    <a class="nav-item-link">
+                        <h3>Private Archive</h3>
+                    </a>
+                    $privateArchive_menu
+                </div>
+            HTML;
+
+        $dms_content = !$shouldShowPrivate
+            ? ""
+            : <<< HTML
+                <div class="nav-item dropdown $dms_activeness">
+                    <a class="nav-item-link">
+                        <h3>DMS</h3>
+                    </a>
+                    $dms_menu
+                </div>
+            HTML;
 
         return <<< HTML
             <div id="navbar">
                 <a href="/yanodash-repository/">
                     <img src="/yanodash-repository/images/navbar-logo.png" draggable="false">
                 </a>
-                <a href="/yanodash-repository"><h1 style="user-select: none;">YanoDASH</h1></a>
-                <span id="vertical-bar" style="width: 2px; height: 32px; background-color: #71100F"></span>
+                <a id="yanodash-home" href="/yanodash-repository">
+                    <h1 style="user-select: none;">Yano<span id="dash-underline">DASH<span></h1>
+                </a>
+
+                <span id="vertical-bar"></span>
 
                 <button class="hamburger">
                     <div style="display: flex; flex-direction: row">
@@ -120,28 +135,18 @@
                 </button>
 
                 <div id="nav-links">
-                    <div class="nav-item dropdown">
+                    <div class="nav-item dropdown $documents_activeness">
                         <a class="nav-item-link" href="/yanodash-repository/documents/">
                             <h3>Documents</h3>
                         </a>
-                        $documents_dropdownMenu
+                        $documents_menu
                     </div>
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-item-link" href="/yanodash-repository/stats/">
-                            <h3>Statistics</h3>
-                        </a>
-                        $statistics_dropdownMenu
-                    </div>
+                    $request_content
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-item-link" href="/yanodash-repository/request/request.php">
-                            <h3>Request</h3>
-                        </a>
-                        $request_dropdownMenu
-                    </div>
-
-                    $space_content
+                    $privateArchive_content
+                    
+                    $dms_content
 
                     <div class="nav-item">
                         <a class="nav-item-link" href="#">
@@ -149,18 +154,18 @@
                         </a>
                     </div>
 
-                    <div class="nav-item dropdown" id="about-dropdown">
+                    <div class="nav-item dropdown $about_activeness">
                         <a class="nav-item-link" href="/yanodash-repository/about/">
                             <h3>About</h3>
                         </a>
-                        $about_dropdownMenu
+                        $about_menu
                     </div>
 
                     <div id="myaccount" class="dropdown" style="margin-left: auto; margin-right: 24px;">
                         <a style="cursor: pointer;">
                             <img src="/yanodash-repository/images/ui-indicators/account.png" draggable="false" style="width: 40px;">
                         </a>
-                        $myaccount_dropdownMenu
+                        $account_menu
                     </div>
                 </div>
             </div>

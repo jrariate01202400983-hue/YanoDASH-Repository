@@ -1,4 +1,9 @@
-<?php 
+<?php
+    if (isset($_SESSION['username'])) {
+        header("location: /yanodash-repository/");
+        exit;
+    }
+
     require_once '../components/head.php';
     require_once '../components/navbar.php';
     require_once '../components/password_input.php';
@@ -148,23 +153,24 @@
                     </div>
                 </div>
                 <div class="login-area">
-                    <form style="padding: 60px 80px; border-radius: 16px; border-top: 6px solid maroon; background: #f4f4f4;">
+                    <form action="process_login.php" method="POST" style="padding: 60px 80px; border-radius: 16px; border-top: 6px solid maroon; background: #f4f4f4;">
                         <div>
                             <h1 style="font-family: 'Gupter', serif; margin-bottom: 8px;">Login</h1>
                         </div>
                         <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'">
-                        <?php echo passwordInput("login-enter-password", "login-password-input", height: 44, width: 240)?>
+                        <?php echo passwordInput("login-enter-password", inputName: "password", height: 44, width: 240)?>
                         <div style="display: flex; flex-direction: row; margin-top: 8px;">
                             <input type="checkbox" style="margin-right: 4px">
                             <p style="font-family: 'RobotoFlex'">Remember me</p>
                         </div>
-                        <a class="btn-back" href="/yanodash-repository/" style="display: block; width: 100px; margin-top: 16px; margin-bottom: 8px; margin-left: auto; margin-right: auto; cursor: pointer; text-align: center; font-family: 'RobotoFlex'">Login</a>                  
+
+                        <input class="btn-back" type="submit" name="login" value="Login" style="display: block; width: 100px; margin-top: 16px; margin-bottom: 8px; margin-left: auto; margin-right: auto; cursor: pointer; text-align: center">
+
                         <a style="text-align: center; cursor: pointer;"><p style="margin-top: 16px; margin-bottom: 16px; font-family: 'RobotoFlex'">I forgot my password</p></a>
                         <hr style="border: 1px solid rgba(0,0,0,0.1)">
 
                         <p style="text-align: center; margin-top: 16px; font-family: 'RobotoFlex'">Don't have an account?</p>
                         <a href="/yanodash-repository/request-account" class="btn-back" style="display: block; margin: auto; width: 180px; margin-top: 8px; font-family: 'RobotoFlex'">Request an account</a>
-                        
                     </form>
                 </div>
             </div>

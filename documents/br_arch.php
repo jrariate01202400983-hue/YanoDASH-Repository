@@ -1,6 +1,8 @@
 <!-- Browse Archive -->
 <!-- Assigned Member: Carylle -->
 <?php
+    session_start();
+
     require_once '../components/head.php';
     require_once '../components/navbar.php';
 ?>

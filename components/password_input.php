@@ -11,7 +11,8 @@
     function passwordInput(string $id, string $inputName, string $watermark = "Password", int $width = MIN_WIDTH, int $height = MIN_HEIGHT): string {
         # Sanitize and escape the string parameters to prevent reflected XSS attack
         $sanitizedID = htmlspecialchars(TextUtils::sanitizeIdentifier($id));
-        $sanitizedInputName = $sanitizedID. "-inputfield";
+        $sanitizedInputID = $sanitizedID. "-inputfield";
+        $sanitizedInputName = htmlspecialchars(TextUtils::sanitizeIdentifier($inputName));
         $sanitizedWatermark = htmlspecialchars($watermark);
 
         # Ensure that the final dimensions of the password input never goes beyond the min or max allowed width and height
@@ -22,7 +23,7 @@
         $v = $finalWidth - $finalHeight;
         $html = <<< HTML
             <div id="$sanitizedID" class="password-input" style="width: {$finalWidth}px; height: {$finalHeight}px; border: 2px solid #ddd; display: grid; grid-template-columns: auto {$finalHeight}px; box-sizing: border-box;">
-                <input id="$sanitizedInputName" class="password-input-field" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1; border: none; width: 100%; height: 100%; box-sizing: border-box; padding: 0 4px;">
+                <input id="$sanitizedInputID" class="password-input-field" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1; border: none; width: 100%; height: 100%; box-sizing: border-box; padding: 0 4px;">
                 <button type="button" style="grid-column: 2; border: none;" onclick="togglePasswordVisibility(this)">⊘</button>
             </div>
         HTML;
