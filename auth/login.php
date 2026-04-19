@@ -6,6 +6,9 @@
         exit;
     }
 
+    $error = $_SESSION['errorMsg'] ?? '';
+    unset($_SESSION['errorMsg']);
+
     require_once '../components/head.php';
     require_once '../components/navbar.php';
     require_once '../components/password_input.php';
@@ -150,6 +153,20 @@
                 background: #DDD;
                 color: gray;
             }
+
+            #message-container {
+                min-height: 16px;
+                min-width: 16px;
+                padding: 1px;
+                box-sizing: border-box;
+                text-align: center;
+            }
+
+            #message-container #err-message {
+                font-family: 'RobotoFlex';
+                font-size: 13px;
+                color: red;
+            }
         </style>
         <?php initializePage("Login | YanoDASH")?>
     </head>
@@ -178,8 +195,17 @@
                         </div>
 
                         <input id="login-button" class="btn-back" type="submit" name="login" value="Login" style="display: block; width: 128px; margin-top: 16px; margin-bottom: 8px; margin-left: auto; margin-right: auto; cursor: pointer; text-align: center">
-
-                        <a style="text-align: center; cursor: pointer;"><p style="margin-top: 16px; margin-bottom: 16px; font-family: 'RobotoFlex'">I forgot my password</p></a>
+                        <div id="message-container">
+                            <?php 
+                                if ($error) {
+                                    $sanitizedError = htmlspecialchars($error);
+                                    echo <<< HTML
+                                        <p id="err-message">$sanitizedError</p>
+                                    HTML;
+                                }
+                            ?>
+                        </div>
+                        <a style="text-align: center; cursor: pointer;"><p style="margin-top: 4px; margin-bottom: 16px; font-family: 'RobotoFlex'">I forgot my password</p></a>
                         <hr style="border: 1px solid rgba(0,0,0,0.1)">
 
                         <p style="text-align: center; margin-top: 16px; font-family: 'RobotoFlex'">Don't have an account?</p>
@@ -194,13 +220,24 @@
             </div>
         </div>
         <script>
+            const inputs = document.querySelectorAll("#uname, #login-enter-password-inputfield");
+            const errorMsg = document.getElementById("err-message");
+
+            inputs.forEach(input => {
+                input.addEventListener("input", () => {
+                    if (errorMsg) {
+                        errorMsg.textContent = "";
+                    }
+                });
+            });
+
             const form = document.querySelector("#form-login");
             const loginButton = document.querySelector("#login-button");
 
             form.addEventListener("submit", () => {
                 hidePassword('login-enter-password-visibilitytoggle'); 
                 setElementsLockedByIDs(['uname', 'login-enter-password-inputfield', 'remember-me']);
-                
+
                 requestAnimationFrame(() => {
                     loginButton.disabled = true;
                     loginButton.value = "Logging in...";

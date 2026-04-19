@@ -29,6 +29,8 @@
 
         header("location: /yanodash-repository/");
     } else {
+        session_start();
+        $_SESSION['errorMsg'] = "Incorrect credentials.";
         header("location: login.php");
         exit;
     }
