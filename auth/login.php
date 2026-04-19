@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if (isset($_SESSION['username'])) {
         header("location: /yanodash-repository/");
         exit;
@@ -52,6 +54,7 @@
                 margin-bottom: 10px;
                 padding: 0 4px;
                 border: 2px solid #ddd;
+                border-radius: 8px;
             }
 
             #login-form {
@@ -137,6 +140,16 @@
             #ab:hover {
                 background-color: #226D2C;
             }
+
+            .locked {
+                cursor: not-allowed;
+                pointer-events: none;
+            }
+
+            input.locked {
+                background: #DDD;
+                color: gray;
+            }
         </style>
         <?php initializePage("Login | YanoDASH")?>
     </head>
@@ -153,18 +166,18 @@
                     </div>
                 </div>
                 <div class="login-area">
-                    <form action="process_login.php" method="POST" style="padding: 60px 80px; border-radius: 16px; border-top: 6px solid maroon; background: #f4f4f4;">
+                    <form id="form-login" action="process_login.php" method="POST" style="padding: 60px 80px; border-radius: 16px; border-top: 6px solid maroon; background: #f4f4f4;">
                         <div>
                             <h1 style="font-family: 'Gupter', serif; margin-bottom: 8px;">Login</h1>
                         </div>
-                        <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'">
+                        <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'" required>
                         <?php echo passwordInput("login-enter-password", inputName: "password", height: 44, width: 240)?>
                         <div style="display: flex; flex-direction: row; margin-top: 8px;">
-                            <input type="checkbox" style="margin-right: 4px">
+                            <input id="remember-me" type="checkbox" style="margin-right: 4px">
                             <p style="font-family: 'RobotoFlex'">Remember me</p>
                         </div>
 
-                        <input class="btn-back" type="submit" name="login" value="Login" style="display: block; width: 100px; margin-top: 16px; margin-bottom: 8px; margin-left: auto; margin-right: auto; cursor: pointer; text-align: center">
+                        <input id="login-button" class="btn-back" type="submit" name="login" value="Login" onclick="hidePassword('login-enter-password-visibilitytoggle'); setElementsLockedByIDs(['uname', 'login-enter-password-inputfield', 'remember-me']);" style="display: block; width: 128px; margin-top: 16px; margin-bottom: 8px; margin-left: auto; margin-right: auto; cursor: pointer; text-align: center">
 
                         <a style="text-align: center; cursor: pointer;"><p style="margin-top: 16px; margin-bottom: 16px; font-family: 'RobotoFlex'">I forgot my password</p></a>
                         <hr style="border: 1px solid rgba(0,0,0,0.1)">
@@ -180,20 +193,17 @@
                 </div>
             </div>
         </div>
+        <script>
+            const form = document.querySelector("#form-login");
+            const loginButton = document.querySelector("#login-button");
 
-        
-        <!-- <div id="background">
-            <div class="form-container" style="width: 320px; z-index: 10;">
-                <h1 style="text-align: center;">Login</h1>
-                <input type="text" id="uname" name="username" placeholder="Username or Email Address">
-                <br>
-                <a class="btn-back" style="display: block; margin: auto; width: 64px; cursor: pointer; text-align: center;">Login</a>
-                <a style="text-align: center; cursor: pointer"><p style="margin: 0;">I forgot my password</p></a>
-                <p style="text-align: center; margin-bottom: 0;">Don't have an account?</p>
-                <a href="/yanodash-repository/request-account">
-                    <button style="display: block; margin: auto; width: 150px; height: 32px; color: black; background-color: white;">Request an account</button>
-                </a>
-                </div>
-        </div> -->
+            form.addEventListener("submit", () => {
+                requestAnimationFrame(() => {
+                    loginButton.disabled = true;
+                    loginButton.value = "Logging in...";
+                    loginButton.classList.add("locked");
+                });
+            });
+        </script>
     </body>
 </html>

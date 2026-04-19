@@ -1,8 +1,14 @@
 <?php
     session_start();
 
+    require_once '../auth/login_enforcer.php';
     require_once '../components/head.php';
     require_once '../components/navbar.php';
+
+    $role = $_SESSION['role'];
+
+    if ($role !== "admin" && $role !== "editor")
+        die("You do not have permission to view this resource.");
 ?>
 
 <!DOCTYPE html>

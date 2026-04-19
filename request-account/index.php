@@ -5,26 +5,44 @@
     require_once '../components/navbar.php';
     require_once '../components/accordion.php';
     require_once '../components/footer.php';
+    require_once '../components/user_form.php';
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php initializePage("Account Requesting | YanoDASH")?>
-        <!-- <link rel="stylesheet" href="../css/base-layout.css"> -->
+        <style>
+            #title {
+                font-family: 'Gupter';
+                font-weight: normal;
+            }
+
+            p, b, i, a, button {
+                font-family: 'RobotoFlex';
+            }
+
+            #continue-login, #begin {
+                cursor: pointer;
+                display: block;
+                margin: auto;
+                width: max-content;
+            }
+        </style>
     </head>
     <body>
         <?php echo navbar(0)?>
-        <h1 style="text-align: center;">Account Requesting</h1>
+        <h1 id="title" style="text-align: center;">Account Requesting</h1>
         <p style="text-align: center; width: 40%; display: block; margin: auto">
             Thank you for taking interest in YanoDASH's features. This form will guide you through the process of requesting your own account using your university email address.
+            <br><br>
         </p>
-        <button style="display: block; margin: auto; height: 32px; cursor: pointer;">Begin</button>
+        <a id="begin" class="btn-back">Begin</a>
         <p style="text-align: center; width: 40%; display: block; margin: auto">
             <br><i>Not a student of the University of Southeastern Philippines?<br> You can always continue <a href="/yanodash-repository/">browsing as a guest.</i></a> 
-            <br><br>Already have an account?
+            <br><br>Already have an account?<br>
         </p>
-        <a href="/yanodash-repository/auth/login.php">
-            <button style="display: block; margin: auto; height: 32px;">Continue to Login Page →</button>
+        <a id="continue-login" class="btn-back" href="/yanodash-repository/auth/login.php">
+            Continue to Login Page →
         </a>
         <div style="width: 75%; margin: auto;">
             <h2 style="font-family: 'Gupter';">Frequently Asked Questions</h2>

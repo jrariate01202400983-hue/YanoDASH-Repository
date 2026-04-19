@@ -1,6 +1,10 @@
 <?php
     require_once '../utils/TextUtils.php';
 
+    echo <<< HTML
+        <link rel="stylesheet" type="text/css" href="/yanodash-repository/css/components/password-input.css">
+    HTML;
+
     # Define the minimum dimensions (width and height), in px unit, allowed for the password input
     const MIN_WIDTH = 200;
     const MAX_WIDTH = 400;
@@ -14,6 +18,7 @@
         $sanitizedInputID = $sanitizedID. "-inputfield";
         $sanitizedInputName = htmlspecialchars(TextUtils::sanitizeIdentifier($inputName));
         $sanitizedWatermark = htmlspecialchars($watermark);
+        $sanitizedButtonID = $sanitizedID. "-visibilitytoggle";
 
         # Ensure that the final dimensions of the password input never goes beyond the min or max allowed width and height
         $finalWidth = max(MIN_WIDTH, min($width, MAX_WIDTH));
@@ -22,9 +27,9 @@
         # Create the event handler script for when the toggle password visibility button of this password field is clicked
         $v = $finalWidth - $finalHeight;
         $html = <<< HTML
-            <div id="$sanitizedID" class="password-input" style="width: {$finalWidth}px; height: {$finalHeight}px; border: 2px solid #ddd; display: grid; grid-template-columns: auto {$finalHeight}px; box-sizing: border-box;">
-                <input id="$sanitizedInputID" class="password-input-field" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1; border: none; width: 100%; height: 100%; box-sizing: border-box; padding: 0 4px;">
-                <button type="button" style="grid-column: 2; border: none;" onclick="togglePasswordVisibility(this)">⊘</button>
+            <div id="$sanitizedID" class="password-input" style="width: {$finalWidth}px; height: {$finalHeight}px; grid-template-columns: auto {$finalHeight}px;">
+                <input id="$sanitizedInputID" class="password-input-field" name="$sanitizedInputName" type="password" placeholder="$watermark" style="grid-column: 1;" required>
+                <button id="$sanitizedButtonID" class="toggle-visibility" type="button" style="grid-column: 2;" onclick="togglePasswordVisibility(this)">⊘</button>
             </div>
         HTML;
         return $html;
