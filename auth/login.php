@@ -157,7 +157,7 @@
                         <div>
                             <h1 style="font-family: 'Gupter', serif; margin-bottom: 8px;">Login</h1>
                         </div>
-                        <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'">
+                        <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'" required minlength="3">
                         <?php echo passwordInput("login-enter-password", inputName: "password", height: 44, width: 240)?>
                         <div style="display: flex; flex-direction: row; margin-top: 8px;">
                             <input type="checkbox" style="margin-right: 4px">
