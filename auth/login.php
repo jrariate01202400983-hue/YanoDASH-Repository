@@ -12,6 +12,7 @@
     require_once '../components/head.php';
     require_once '../components/navbar.php';
     require_once '../components/password_input.php';
+    require_once '../utils/security/csrf_token.php';
 ?>
 
 <!DOCTYPE html>
@@ -154,6 +155,12 @@
                 color: gray;
             }
 
+            #login-button.locked:hover {
+                background: #DDD;
+                color: gray;
+                transition: none;
+            }
+
             #message-container {
                 min-height: 16px;
                 min-width: 16px;
@@ -184,10 +191,12 @@
                 </div>
                 <div class="login-area">
                     <form id="form-login" action="process_login.php" method="POST" style="padding: 60px 80px; border-radius: 16px; border-top: 6px solid maroon; background: #f4f4f4;">
+                        <?= CSRFInputField() ?>
+                        
                         <div>
                             <h1 style="font-family: 'Gupter', serif; margin-bottom: 8px;">Login</h1>
                         </div>
-                        <input type="text" id="uname" name="username" placeholder="Username or Email Address" style="font-family: 'RobotoFlex'" required>
+                        <input type="text" id="uname" name="username" placeholder="Email Address" style="font-family: 'RobotoFlex'" required>
                         <?php echo passwordInput("login-enter-password", inputName: "password", height: 44, width: 240)?>
                         <div style="display: flex; flex-direction: row; margin-top: 8px;">
                             <input id="remember-me" type="checkbox" style="margin-right: 4px">

@@ -64,16 +64,14 @@
             "Request an Account" => "/yanodash-repository/request-account"
         ], isDark: true);
         if ($isLoggedIn) {
-            $username = $_SESSION['username'];
+            $fullname = $_SESSION['fullname'];
             $account_menu = $_SESSION['role'] !== "admin"
                 ? menu("account-menu", [
-                    "Logged in as: <b><i>$username</i></b>" => "#",
-                    "My Account" => "#",
+                    "Logged in as:<br> <b><i>$fullname</i></b><br><p style='color: rgba(252, 151, 151, 0.9);'>Visit My Account</p>" => "/yanodash-repository/user/account.php",
                     "Logout" => "/yanodash-repository/auth/logout.php"
                 ], isDark: true)
                 : menu("account-menu", [
-                    "Logged in as: <b><i>$username</i></b>" => "#",
-                    "My Account" => "#",
+                    "Logged in as:<br> <b><i>$fullname</i></b><br><p style='color: rgba(252, 151, 151, 0.9);'>Visit My Account</p>" => "/yanodash-repository/user/account.php",
                     "Register/Approve an Account" => "#",
                     "Logout" => "/yanodash-repository/auth/logout.php"
                 ], isDark: true);
